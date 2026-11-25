@@ -1,0 +1,14 @@
+{
+  "name": "StudyFlow",
+  "short_name": "StudyFlow",
+  "description": "Tu universidad, en orden.",
+  "lang": "es",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#F7F9FC",
+  "theme_color": "#3A5BE0",
+  "icons": [
+    { "src": "assets/img/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/img/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

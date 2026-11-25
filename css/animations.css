@@ -1,0 +1,70 @@
+/* =========================================================
+   StudyFlow · Movimiento
+   Solo se animan transform y opacity (60 fps). Con
+   "reducir movimiento" todo pasa a fundidos breves.
+   ========================================================= */
+
+/* Transiciones de pantalla */
+.screen.enter-push   { animation: push-enter var(--t-slow) var(--ease-out) both; }
+.screen.leave-push   { animation: push-leave var(--t-slow) var(--ease-out) both; }
+.screen.enter-pop    { animation: pop-enter var(--t-slow) var(--ease-out) both; }
+.screen.leave-pop    { animation: pop-leave var(--t-slow) var(--ease-out) both; z-index: 2; }
+.screen.enter-fade   { animation: tab-enter var(--t-med) var(--ease-out) both; }
+.screen.leave-fade   { animation: fade-out var(--t-fast) linear both; }
+.screen.enter-up     { animation: up-enter var(--t-slow) var(--ease-out) both; z-index: 3; }
+.screen.leave-down   { animation: down-leave var(--t-med) var(--ease-in) both; z-index: 3; }
+
+@keyframes push-enter { from { transform: translateX(100%); } to { transform: none; } }
+@keyframes push-leave { from { transform: none; opacity: 1; } to { transform: translateX(-28%); opacity: .6; } }
+@keyframes pop-enter  { from { transform: translateX(-28%); opacity: .6; } to { transform: none; opacity: 1; } }
+@keyframes pop-leave  { from { transform: none; } to { transform: translateX(100%); } }
+@keyframes tab-enter  { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes up-enter   { from { transform: translateY(100%); } to { transform: none; } }
+@keyframes down-leave { from { transform: none; } to { transform: translateY(100%); } }
+@keyframes fade-in  { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fade-out { from { opacity: 1; } to { opacity: 0; } }
+
+/* Entrada escalonada del contenido */
+.stagger > * { animation: rise var(--t-slow) var(--ease-out) both; }
+.stagger > *:nth-child(1) { animation-delay: 20ms; }
+.stagger > *:nth-child(2) { animation-delay: 60ms; }
+.stagger > *:nth-child(3) { animation-delay: 100ms; }
+.stagger > *:nth-child(4) { animation-delay: 140ms; }
+.stagger > *:nth-child(5) { animation-delay: 180ms; }
+.stagger > *:nth-child(6) { animation-delay: 220ms; }
+.stagger > *:nth-child(n+7) { animation-delay: 250ms; }
+@keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+@keyframes ripple { to { transform: scale(2.6); opacity: 0; } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes pop { 0% { transform: scale(.6); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+@keyframes shimmer { from { background-position: 100% 0; } to { background-position: -200% 0; } }
+@keyframes toast-in  { from { opacity: 0; transform: translateY(16px) scale(.98); } to { opacity: 1; transform: none; } }
+@keyframes toast-out { to { opacity: 0; transform: translateY(12px) scale(.98); } }
+@keyframes push-in  { from { transform: translateY(-140%); } to { transform: none; } }
+@keyframes push-out { to { transform: translateY(-140%); opacity: .4; } }
+@keyframes pulse-ring { 0%, 100% { box-shadow: inset 0 0 0 2px var(--primary); } 50% { box-shadow: inset 0 0 0 6px var(--primary-soft-2); } }
+@keyframes coach-pulse { 0% { opacity: .9; transform: scale(1); } 100% { opacity: 0; transform: scale(1.08); } }
+@keyframes breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+@keyframes wave { 0%, 100% { transform: scaleY(.35); } 50% { transform: scaleY(1); } }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+@keyframes check-draw { from { stroke-dashoffset: 40; } to { stroke-dashoffset: 0; } }
+@keyframes bar-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes typing { 0%, 80%, 100% { transform: translateY(0); opacity: .4; } 40% { transform: translateY(-4px); opacity: 1; } }
+@keyframes shake { 10%, 90% { transform: translateX(-1px); } 20%, 80% { transform: translateX(3px); } 30%, 50%, 70% { transform: translateX(-5px); } 40%, 60% { transform: translateX(5px); } }
+@keyframes splash-logo { 0% { opacity: 0; transform: scale(.86); } 60% { opacity: 1; } 100% { opacity: 1; transform: scale(1); } }
+@keyframes splash-bar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+.shake { animation: shake .42s var(--ease-out); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+  .screen.enter-push, .screen.enter-pop, .screen.enter-fade, .screen.enter-up { animation: fade-in 120ms linear both !important; }
+  .screen.leave-push, .screen.leave-pop, .screen.leave-fade, .screen.leave-down { animation: fade-out 120ms linear both !important; }
+  .coach-ring::after, .skel, .spinner { animation: none !important; }
+}

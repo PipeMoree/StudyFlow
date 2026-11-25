@@ -1,0 +1,54 @@
+/* =========================================================
+   StudyFlow · Panel del prototipo (fuera de la app)
+   Columnas a los lados del teléfono. Solo en escritorio.
+   ========================================================= */
+.stage-right { max-width: 272px; width: 100%; align-content: start; gap: 18px; justify-self: start; }
+.stage-right h2 { font-size: var(--fs-17); font-weight: 800; color: var(--text); }
+.stage-group { position: relative; display: grid; gap: 8px; justify-items: start; min-width: 0; }
+.stage-right .stage-group { padding-top: 14px; border-top: 1px solid var(--border-strong); }
+.stage-sim-t { font-weight: 700; color: var(--text); }
+.stage-sim-t span { display: block; font-weight: 500; color: var(--text-2); }
+.stage-btn { min-height: 40px; text-align: left; transition: background-color var(--t-fast); }
+.stage-btn:disabled { opacity: .5; cursor: not-allowed; }
+.stage-btn.primary { background: var(--primary); border-color: var(--primary); color: var(--on-primary); }
+.stage-btn.primary:hover { background: var(--primary-press); }
+.stage-btn.danger { background: var(--danger); border-color: var(--danger); color: var(--on-danger); }
+.stage-btn.danger:hover { filter: brightness(1.08); }
+.stage-btn svg { flex: none; }
+.stage-sw { width: 100%; min-height: 44px; display: flex; align-items: center; justify-content: space-between; gap: 12px; font-weight: 600; color: var(--text); cursor: pointer; }
+/* Flota justo encima del último botón del grupo: el panel y el teléfono no se mueven */
+.stage-confirm { position: absolute; left: 0; bottom: 50px; z-index: 6; width: 100%; min-width: 252px; max-width: 300px; display: grid; gap: 8px; padding: 14px; border-radius: var(--r-lg); background: var(--surface); color: var(--text-2); box-shadow: 0 0 0 1.5px var(--border-strong), 0 18px 36px -18px rgb(0 0 0 / .4); animation: rise var(--t-med) var(--ease-out); }
+.stage-confirm b { color: var(--text); }
+.stage-confirm .hrow { gap: 8px; margin-top: 4px; }
+.stage-msg { display: grid; gap: 8px; justify-items: start; min-height: 66px; align-content: start; }
+.stage-msg.on { padding: 12px 14px; border-radius: var(--r-md); background: var(--primary-soft); color: var(--text); animation: rise var(--t-med) var(--ease-out); }
+
+/* Desplegable de hitos */
+.stage-drop { position: relative; }
+.stage-drop > summary { cursor: pointer; list-style: none; }
+.stage-drop > summary::-webkit-details-marker { display: none; }
+.stage-drop .sd-arrow { transition: transform var(--t-med) var(--ease-out); }
+.stage-drop[open] .sd-arrow { transform: rotate(180deg); }
+.stage-pop { position: absolute; left: 0; top: calc(100% + 8px); z-index: 5; width: 264px; max-height: min(440px, 52vh); overflow-y: auto; padding: 6px; border-radius: var(--r-lg); background: var(--surface); color: var(--text); box-shadow: 0 0 0 1px var(--border), 0 24px 50px -18px rgb(0 0 0 / .4); animation: rise var(--t-med) var(--ease-out); }
+.stage-pop .grow { display: grid; text-align: left; line-height: 1.3; }
+.stage-pop b { font-size: var(--fs-14); font-weight: 700; }
+.stage-pop .grow > span { font-size: var(--fs-12); color: var(--text-2); }
+.stage-hito { width: 100%; display: flex; align-items: center; gap: 12px; padding: 4px 10px; border-radius: var(--r-md); transition: background-color var(--t-fast); }
+.stage-hito:hover { background: var(--surface-2); }
+.stage-hito .hito-badge { width: 38px; }
+.stage-hito .sd-now { display: none; flex: none; color: var(--primary-text); }
+.stage-hito[aria-current] { background: var(--primary-soft); }
+.stage-hito[aria-current] .sd-now { display: block; }
+.stage-pend { display: flex; align-items: center; gap: 12px; margin-top: 6px; padding: 10px 10px 6px; border-top: 1px solid var(--border); cursor: pointer; }
+body[data-contrast="high"] .stage-pop, body[data-contrast="high"] .stage-confirm { box-shadow: 0 0 0 2px var(--text); }
+
+/* Pantallas bajas: paneles más compactos para que no haya que desplazar la página */
+@media (max-height: 820px) {
+  .stage-aside { gap: 10px; font-size: var(--fs-13); }
+  .stage-aside h1 { font-size: var(--fs-24); }
+  .stage-aside .stage-list { gap: 4px; }
+  .stage-btn { min-height: 34px; padding: 4px 12px; font-size: var(--fs-12); }
+  .stage-group { gap: 6px; }
+  .stage-right .stage-group { padding-top: 10px; }
+  .stage-sw { min-height: 36px; }
+}

@@ -1,0 +1,119 @@
+/* =========================================================
+   StudyFlow · Capa visual "viva"
+   Degradados muy sutiles, iconos en dos tonos, profundidad
+   suave y microinteracciones. Se desactiva en alto contraste
+   y respeta «reducir movimiento».
+   ========================================================= */
+
+body {
+  --grad-primary: linear-gradient(135deg, color-mix(in srgb, var(--primary) 82%, #7C5CFF) 0%, var(--primary) 55%, color-mix(in srgb, var(--primary) 88%, #1FA6C9) 100%);
+  --grad-soft: linear-gradient(160deg, color-mix(in srgb, var(--primary-soft) 100%, transparent) 0%, color-mix(in srgb, var(--primary-soft) 45%, var(--surface)) 100%);
+  --glow: color-mix(in srgb, var(--primary) 14%, transparent);
+  --glow-2: color-mix(in srgb, #7C5CFF 9%, transparent);
+  --lift: 0 1px 0 rgb(var(--shadow-color) / .03), 0 10px 24px -16px rgb(var(--shadow-color) / .35);
+}
+
+/* Fondo de pantalla con un halo muy suave arriba */
+.screen {
+  background:
+    radial-gradient(120% 60% at 100% -10%, var(--glow) 0%, transparent 55%),
+    radial-gradient(90% 50% at -10% 0%, var(--glow-2) 0%, transparent 60%),
+    var(--bg);
+}
+
+/* Tarjetas: profundidad suave y respuesta al toque */
+.card { box-shadow: 0 0 0 1px var(--border), var(--lift); }
+button.card, .card.tap, .tl-card, .note-card, .agenda-row.card {
+  transition: transform var(--t-fast) var(--ease-out), box-shadow var(--t-med) var(--ease-out), background-color var(--t-fast);
+}
+@media (hover: hover) {
+  button.card:hover, .card.tap:hover, .note-card:hover { transform: translateY(-1px); box-shadow: 0 0 0 1px color-mix(in srgb, var(--primary) 30%, var(--border)), 0 14px 28px -18px rgb(var(--shadow-color) / .45); }
+}
+button.card:active, .card.tap:active, .note-card:active, .tl-card:active { transform: scale(.985); }
+
+/* Botón principal con degradado y brillo al pulsar */
+.btn-primary { background: var(--grad-primary); box-shadow: 0 8px 20px -10px color-mix(in srgb, var(--primary) 75%, transparent), inset 0 1px 0 rgb(255 255 255 / .18); }
+.btn-primary:hover:not([disabled]) { filter: brightness(1.05); }
+.btn-primary::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: linear-gradient(110deg, transparent 30%, rgb(255 255 255 / .28) 50%, transparent 70%);
+  transform: translateX(-120%);
+}
+.btn-primary:active::after { transition: transform .5s var(--ease-out); transform: translateX(120%); }
+.btn-soft { background: var(--grad-soft); }
+.btn-gray { --btn-bg: var(--surface-3); }
+
+/* Iconos en dos tonos: relleno suave detrás del trazo */
+.row-icon {
+  background: var(--grad-soft);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--primary) 12%, transparent);
+}
+.row-icon svg, .tab[aria-current="page"] svg, .notif-ic svg, .week-bar svg {
+  fill: color-mix(in srgb, currentColor 16%, transparent);
+}
+.row.danger .row-icon { background: var(--danger-soft); box-shadow: none; }
+.subj-dot { background: var(--subj-soft, var(--primary-soft)); color: var(--subj, var(--primary)); }
+
+/* Prioridad de hoy: degradado suave y destello decorativo */
+.focus-card {
+  background: radial-gradient(140% 120% at 100% 0%, color-mix(in srgb, var(--primary) 12%, transparent) 0%, transparent 50%), var(--grad-soft);
+}
+
+/* Barra semanal y progreso con degradado y brillo en movimiento */
+.progress > i { background: var(--grad-primary); position: relative; overflow: hidden; }
+.progress > i::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / .35), transparent);
+  transform: translateX(-100%); animation: sf-shimmer 2.8s 1s ease-in-out;
+}
+@keyframes sf-shimmer { 0% { transform: translateX(-100%); } 60%, 100% { transform: translateX(100%); } }
+
+/* Segmentado: la selección con un toque de degradado */
+.seg .seg-thumb { background: var(--grad-soft); box-shadow: 0 2px 8px -4px color-mix(in srgb, var(--primary) 50%, transparent); }
+
+/* Días del plan */
+.day-chip[aria-selected="true"] { background: var(--grad-primary); box-shadow: 0 8px 16px -10px color-mix(in srgb, var(--primary) 80%, transparent); }
+
+/* Barra inferior: icono activo con rebote y punto */
+.tab[aria-current="page"] .tab-ic { background: var(--grad-soft); animation: sf-tab-pop .42s var(--ease-spring); }
+@keyframes sf-tab-pop { 0% { transform: scale(.82); } 100% { transform: translateY(-1px) scale(1); } }
+.tab { font-weight: 500; }
+.tab[aria-current="page"] { font-weight: 700; }
+
+/* Botón flotante */
+.fab { background: var(--grad-primary); }
+
+/* Avatar con degradado */
+.avatar { background: var(--grad-primary); color: var(--on-primary); }
+
+/* Hojas y diálogos: borde superior luminoso */
+.sheet, .dialog { background-image: linear-gradient(180deg, color-mix(in srgb, var(--primary) 5%, transparent), transparent 120px); }
+
+/* Encabezados de sección con acento */
+.section-head h2::before {
+  content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+  margin-right: 8px; vertical-align: middle; background: var(--grad-primary);
+}
+
+/* Entradas: realce de foco más amable */
+.input:focus, .input-btn:focus-visible { box-shadow: inset 0 0 0 2px var(--primary), 0 0 0 4px color-mix(in srgb, var(--primary) 16%, transparent); }
+
+
+/* Splash e inicio: el logo flota sobre un halo */
+.splash { background: radial-gradient(60% 40% at 50% 45%, var(--glow) 0%, transparent 70%), var(--bg); }
+
+/* ---------- Alto contraste: sin degradados ni adornos ---------- */
+body[data-contrast="high"] .screen { background: var(--bg); }
+body[data-contrast="high"] .btn-primary, body[data-contrast="high"] .fab, body[data-contrast="high"] .day-chip[aria-selected="true"], body[data-contrast="high"] .avatar, body[data-contrast="high"] .progress > i { background: var(--primary); }
+body[data-contrast="high"] .row-icon, body[data-contrast="high"] .focus-card, body[data-contrast="high"] .btn-soft, body[data-contrast="high"] .seg .seg-thumb, body[data-contrast="high"] .tab[aria-current="page"] .tab-ic { background: var(--primary-soft); }
+body[data-contrast="high"] .sheet, body[data-contrast="high"] .dialog { background-image: none; }
+body[data-contrast="high"] .row-icon svg, body[data-contrast="high"] .tab svg { fill: none; }
+body[data-contrast="high"] .progress > i::after, body[data-contrast="high"] .btn-primary::after { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .progress > i::after { animation: none; display: none; }
+  .tab[aria-current="page"] .tab-ic { animation: none; }
+}
+
+/* El foco que la app pone en el título al navegar (para lectores de pantalla) no se dibuja */
+[tabindex="-1"]:focus, [tabindex="-1"]:focus-visible, .tb-title:focus { outline: none !important; box-shadow: none !important; }

@@ -1,0 +1,197 @@
+/* =========================================================
+   StudyFlow · Tokens de diseño
+   Extraídos del archivo de Figma "StudyFlow" (colección
+   Primero / Tema, Medidas y Tipografía) y ajustados para
+   cumplir WCAG 2.2: AA en los temas normales y AAA (7:1)
+   en los modos de alto contraste.
+   ========================================================= */
+
+@font-face {
+  font-family: "Manrope";
+  src: url("../assets/fonts/Manrope-Variable.ttf") format("truetype");
+  font-weight: 200 800;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Caveat";
+  src: url("../assets/fonts/Caveat-Variable.ttf") format("truetype");
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+body {
+  color-scheme: light;
+
+  /* ---- Color · Claro (por defecto) ---- */
+  --bg: #F7F9FC;             /* color/fondo */
+  --surface: #FFFFFF;        /* color/tarjeta */
+  --surface-2: #F1F3F7;      /* color/superficie-2 */
+  --surface-3: #E9EDF3;
+  --text: #172033;           /* color/texto        15.4:1 */
+  --text-2: #5A6478;         /* color/secundario (Figma) 5.9:1 */
+  --text-3: #5C6679;         /* color/atenuado      5.6:1 */
+  --border: #E3E7ED;         /* color/borde (decorativo) */
+  --border-strong: #8A94A6;  /* bordes de controles 3.1:1 */
+  --primary: #3A5BE0;        /* color/primario      5.6:1 */
+  --primary-press: #2E4BC4;
+  --on-primary: #FFFFFF;
+  --primary-text: #3450D0;
+  --primary-soft: #E6ECFF;   /* color/azul-claro */
+  --primary-soft-2: #D5DFFF;
+  --danger: #B42318;         /* color/error */
+  --on-danger: #FFFFFF;      /* color/sobre-error */
+  --danger-soft: #FEECEB;
+  --success: #247144;        /* color/exito */
+  --success-soft: #E5F3EA;
+  --warning: #895B12;        /* color/aviso */
+  --warning-soft: #FFF0D4;
+  --scrim: rgba(9, 13, 26, .5);
+  --shadow-color: 23 32 51;
+  --focus: #3A5BE0;
+  --frame: #0D1220;
+  --stage: #E8ECF4;
+  --stage-2: #DDE3EE;
+
+  /* Colores de materia (tintes) */
+  --s-blue: #3450D0;   --s-blue-soft: #E6ECFF;
+  --s-teal: #0F766E;   --s-teal-soft: #DDF4F1;
+  --s-rose: #B4235A;   --s-rose-soft: #FCE7F0;
+  --s-amber: #8A5A00;  --s-amber-soft: #FFF1D6;
+  --s-violet: #6D3FD0; --s-violet-soft: #EFE7FF;
+  --s-green: #247144;  --s-green-soft: #E5F3EA;
+
+  /* ---- Tipografía ---- */
+  --font: "Manrope", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-hand: "Caveat", "Segoe Print", cursive;
+  --ts: 1;
+  --fs-10: calc(10px * var(--ts));
+  --fs-11: calc(11px * var(--ts));
+  --fs-12: calc(12px * var(--ts));
+  --fs-13: calc(13px * var(--ts));
+  --fs-14: calc(14px * var(--ts));
+  --fs-15: calc(15px * var(--ts));
+  --fs-16: calc(16px * var(--ts));
+  --fs-17: calc(17px * var(--ts));
+  --fs-18: calc(18px * var(--ts));
+  --fs-20: calc(20px * var(--ts));
+  --fs-22: calc(22px * var(--ts));
+  --fs-24: calc(24px * var(--ts));
+  --fs-28: calc(28px * var(--ts));
+  --fs-32: calc(32px * var(--ts));
+  --lh-tight: 1.2; --lh: 1.45;
+
+  /* ---- Medidas (densidad cómoda) ---- */
+  --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px; --sp-5: 20px;
+  --sp-6: 24px; --sp-8: 32px; --sp-10: 40px;
+  --row-min: 56px;
+  --control-h: 48px;
+  --r-sm: 8px; --r-md: 12px; --r-lg: 16px; --r-xl: 22px; --r-pill: 999px;
+
+  /* ---- Movimiento ---- */
+  --ease-out: cubic-bezier(.22, 1, .36, 1);
+  --ease-in: cubic-bezier(.4, 0, 1, 1);
+  --ease-spring: cubic-bezier(.34, 1.36, .64, 1);
+  --t-fast: 140ms; --t-med: 260ms; --t-slow: 420ms;
+}
+
+/* ---- Densidad compacta (color/Medidas · Compacta) ---- */
+body[data-density="compact"] {
+  --sp-2: 6px; --sp-3: 8px; --sp-4: 12px; --sp-5: 14px; --sp-6: 16px; --sp-8: 24px;
+  --row-min: 48px;
+  --control-h: 44px;
+}
+
+/* ---- Tamaño de texto (Tipografía · Grande ≈ +17 %) ---- */
+body[data-text="large"] { --ts: 1.175; }
+
+/* ---- Oscuro ---- */
+body[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #111827;
+  --surface: #1C2536;
+  --surface-2: #232E42;
+  --surface-3: #2B3850;
+  --text: #F7F9FC;
+  --text-2: #C7CEDB;
+  --text-3: #A3ADBF;
+  --border: #2F3B52;
+  --border-strong: #7A869C;
+  --primary: #7C96FF;
+  --primary-press: #93A9FF;
+  --on-primary: #0B1230;
+  --primary-text: #9DB0FF;
+  --primary-soft: #23305A;
+  --primary-soft-2: #2D3D70;
+  --danger: #FF9B91;
+  --on-danger: #2A0906;
+  --danger-soft: #3A1A1A;
+  --success: #6ED29A;
+  --success-soft: #16352A;
+  --warning: #F2C46B;
+  --warning-soft: #3A2E14;
+  --scrim: rgba(0, 0, 0, .62);
+  --shadow-color: 0 0 0;
+  --focus: #9DB0FF;
+  --stage: #0A0F1A;
+  --stage-2: #121A2B;
+  --s-blue: #9DB0FF;   --s-blue-soft: #23305A;
+  --s-teal: #5EE0CF;   --s-teal-soft: #113532;
+  --s-rose: #FF9CC3;   --s-rose-soft: #3D1A2A;
+  --s-amber: #F2C46B;  --s-amber-soft: #3A2E14;
+  --s-violet: #C3A8FF; --s-violet-soft: #2E2350;
+  --s-green: #6ED29A;  --s-green-soft: #16352A;
+}
+
+/* ---- Alto contraste · claro (WCAG AAA: texto ≥ 7:1, bordes ≥ 4.5:1) ---- */
+body[data-contrast="high"] {
+  --bg: #FFFFFF;
+  --surface: #FFFFFF;
+  --surface-2: #F2F4F8;
+  --surface-3: #E6EAF1;
+  --text: #000000;
+  --text-2: #1F2633;
+  --text-3: #2E3646;
+  --border: #4A5466;
+  --border-strong: #1F2633;
+  --primary: #1A36A8;
+  --primary-press: #12287F;
+  --on-primary: #FFFFFF;
+  --primary-text: #1A36A8;
+  --primary-soft: #E3E9FF;
+  --primary-soft-2: #C9D4FF;
+  --danger: #8F1A10;
+  --danger-soft: #FFE9E7;
+  --success: #145A32;
+  --success-soft: #E2F2E8;
+  --warning: #5C3B00;
+  --warning-soft: #FFF0D4;
+  --focus: #000000;
+  --s-blue: #1A36A8; --s-teal: #0B4F49; --s-rose: #85123F; --s-amber: #5C3B00; --s-violet: #4A1FA8; --s-green: #145A32;
+}
+/* ---- Alto contraste · oscuro ---- */
+body[data-theme="dark"][data-contrast="high"] {
+  --bg: #000000;
+  --surface: #0B0F17;
+  --surface-2: #141A26;
+  --surface-3: #1D2433;
+  --text: #FFFFFF;
+  --text-2: #E6EAF2;
+  --text-3: #D2D8E3;
+  --border: #AEB8C8;
+  --border-strong: #E6EAF2;
+  --primary: #AFC0FF;
+  --primary-press: #C8D4FF;
+  --on-primary: #000000;
+  --primary-text: #BCCBFF;
+  --primary-soft: #1B2547;
+  --primary-soft-2: #26346A;
+  --danger: #FFB4AB;
+  --on-danger: #000000;
+  --danger-soft: #3A1A1A;
+  --success: #8EE6B4;
+  --success-soft: #16352A;
+  --warning: #FFD58A;
+  --warning-soft: #3A2E14;
+  --focus: #FFFFFF;
+  --s-blue: #BCCBFF; --s-teal: #8CF0E2; --s-rose: #FFB8D4; --s-amber: #FFD58A; --s-violet: #D7C6FF; --s-green: #8EE6B4;
+}

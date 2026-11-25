@@ -1,0 +1,211 @@
+/* =========================================================
+   StudyFlow · Racha — estilos
+   Solo usa los tokens de la app: sigue el tema, el alto
+   contraste, el texto grande y la vista compacta.
+   ========================================================= */
+
+/* ---------- Botón en Hoy (junto a Avisos) ---------- */
+.hoy-head .icon-label > .icon-btn { flex: none; }
+.streak-btn.on { background: var(--primary-soft); color: var(--primary-text); box-shadow: 0 0 0 1px var(--primary-soft-2); }
+.streak-btn.on svg { fill: color-mix(in srgb, currentColor 22%, transparent); }
+.streak-btn.wait { color: var(--primary-text); }
+.streak-btn.lost, .streak-btn.new { color: var(--text-2); }
+.icon-btn.streak-btn .dot { top: -4px; right: -4px; background: var(--primary); color: var(--on-primary); }
+.icon-btn.streak-btn.wait .dot { background: var(--warning); color: var(--surface); }
+
+/* ---------- Cabecera de la pantalla ---------- */
+.streak-hero { display: grid; justify-items: center; gap: var(--sp-4); }
+.streak-hero > .callout { width: 100%; align-items: center; }
+.streak-hero > .callout svg { margin-top: 0; }
+.streak-art { width: 188px; height: auto; }
+.streak-art .sa-halo { fill: var(--primary-soft-2); opacity: .7; }
+.streak-art .sa-disc { fill: var(--surface); }
+.streak-art .sa-flame {
+  color: var(--primary); stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round;
+  fill: color-mix(in srgb, currentColor 18%, transparent);
+  overflow: visible;
+}
+.streak-art .sa-flame path { transform-box: view-box; transform-origin: 50% 100%; }
+.streak-art.on .sa-flame path { animation: streak-flicker 1.6s ease-in-out 3; }
+.streak-art.wait .sa-halo { fill: var(--warning-soft); opacity: 1; }
+.streak-art.wait .sa-flame { color: var(--warning); fill: none; }
+.streak-art.lost .sa-halo, .streak-art.new .sa-halo { fill: var(--surface-3); opacity: 1; }
+.streak-art.lost .sa-flame, .streak-art.new .sa-flame { color: var(--text-3); fill: none; }
+@keyframes streak-flicker { 0%, 100% { transform: scale(1); } 40% { transform: scale(.97, 1.04); } 70% { transform: scale(1.02, .98); } }
+
+.streak-num { display: grid; justify-items: center; line-height: 1; gap: 6px; }
+.streak-num b { font-size: calc(48px * var(--ts)); font-weight: 800; letter-spacing: -.02em; color: var(--text); }
+.streak-num span { font-size: var(--fs-15); font-weight: 600; color: var(--text-2); }
+
+/* Semana actual */
+.streak-week { width: 100%; display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.streak-week li { position: relative; display: grid; justify-items: center; gap: 6px; }
+.streak-week .sw-l { font-size: var(--fs-12); font-weight: 700; color: var(--text-2); }
+.streak-week .today .sw-l { color: var(--primary-text); }
+.streak-week .sw-c { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: var(--surface-2); color: var(--text-3); }
+.streak-week .done .sw-c { background: var(--primary); color: var(--on-primary); }
+.streak-week .done .sw-c svg { fill: color-mix(in srgb, currentColor 22%, transparent); }
+.streak-week .now .sw-c { background: var(--surface); color: var(--primary-text); box-shadow: inset 0 0 0 2px var(--primary); }
+.streak-week .future .sw-c { background: transparent; box-shadow: inset 0 0 0 1.5px var(--border); }
+.streak-week .done.today .sw-c { box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--primary); }
+
+/* Cifras */
+.streak-stats { padding-block: var(--sp-3); }
+.streak-stats > div { display: grid; justify-items: center; gap: 2px; min-width: 0; padding-inline: 4px; }
+.streak-stats span { text-align: center; }
+.streak-stats > div + div { border-left: 1px solid var(--border); }
+.streak-stats b { line-height: 1.2; }
+
+/* ---------- Insignias de hito ---------- */
+.hito-badge { --bd: var(--border-strong); --bd-soft: var(--surface-2); width: 76px; height: auto; flex: none; overflow: visible; }
+.hito-badge .hb-shape { fill: var(--bd-soft); stroke: var(--bd); stroke-width: 2.5; stroke-linejoin: round; }
+.hito-badge .hb-ring { fill: var(--surface); stroke: color-mix(in srgb, var(--bd) 32%, transparent); stroke-width: 1.5; }
+.hito-badge .hb-prog { fill: none; stroke: var(--bd); stroke-width: 3; stroke-linecap: round; }
+.hito-badge .hb-ic { stroke: var(--bd); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; fill: color-mix(in srgb, var(--bd) 18%, transparent); }
+.hito-badge .hb-plate { fill: var(--bd); stroke: var(--surface); stroke-width: 2; }
+.hito-badge .hb-num { font-family: var(--font); font-size: 11.5px; font-weight: 800; fill: var(--surface); font-variant-numeric: tabular-nums; }
+.hito-badge.next .hb-shape { fill: var(--surface); stroke-opacity: .55; }
+.hito-badge.next .hb-ring { stroke-width: 3; }
+.hito-badge.locked .hb-shape { stroke-width: 2; stroke-opacity: .6; }
+.hito-badge.locked .hb-ic { fill: none; opacity: .75; }
+.hito-badge.locked .hb-plate { fill: var(--text-3); }
+.hito-badge.solid .hb-shape, .hito-badge.solid .hb-ring { fill: var(--bd); }
+.hito-badge.solid .hb-ring { stroke: color-mix(in srgb, var(--on-primary) 55%, transparent); }
+.hito-badge.solid .hb-ic { stroke: var(--on-primary); fill: color-mix(in srgb, var(--on-primary) 22%, transparent); }
+
+.hitos-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--sp-2); }
+.hito { display: grid; justify-items: center; align-content: start; gap: 6px; padding: var(--sp-3) 6px; }
+button.card.hito { text-align: center; }
+.hito-txt { display: grid; justify-items: center; gap: 2px; min-width: 0; }
+.hito-txt b { font-size: var(--fs-14); font-weight: 700; }
+.hito-sub { display: inline-flex; align-items: center; justify-content: center; gap: 4px; font-size: var(--fs-12); font-weight: 600; color: var(--text-2); }
+.hito-sub svg { flex: none; }
+.hito.done .hito-sub { color: var(--success); }
+.hito.next .hito-sub { color: var(--primary-text); }
+.hito.locked { background: transparent; box-shadow: inset 0 0 0 1px var(--border); }
+.hito.wide { grid-column: 1 / -1; grid-template-columns: auto 1fr auto; align-items: center; justify-items: start; gap: var(--sp-3); padding: var(--sp-3) var(--sp-4); }
+button.card.hito.wide { text-align: left; }
+.hito.wide .hito-txt { justify-items: start; }
+.next-hito { display: flex; align-items: center; gap: var(--sp-4); }
+.next-hito .grow > * { width: 100%; }
+.next-hito .progress { display: block; }
+.hito-hero { display: grid; place-items: center; padding-block: var(--sp-2); }
+.hito-hero .hito-badge { width: 148px; }
+.hito-pop { display: grid; place-items: center; }
+.hito-pop .hito-badge { width: 116px; animation: pop var(--t-slow) var(--ease-spring) .1s both; }
+.dialog:has(.hito-pop) h2, .dialog:has(.hito-pop) p { text-align: center; }
+
+/* ---------- Calendario de 4 semanas ---------- */
+.streak-cal { display: grid; gap: var(--sp-2); padding: var(--sp-3); }
+.streak-dow, .streak-grid { display: grid; grid-template-columns: repeat(7, 1fr); }
+.streak-grid { row-gap: 6px; }
+.streak-dow span { text-align: center; font-size: var(--fs-12); font-weight: 800; color: var(--text-3); padding: 2px 0; }
+.streak-grid li { position: relative; display: grid; place-items: center; height: 36px; font-size: var(--fs-13); font-weight: 600; color: var(--text-2); }
+.streak-grid li > .t-num { position: relative; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; }
+.streak-grid li.done { background: var(--primary-soft); color: var(--primary-text); font-weight: 800; }
+.streak-grid li.start { border-top-left-radius: 18px; border-bottom-left-radius: 18px; }
+.streak-grid li.end { border-top-right-radius: 18px; border-bottom-right-radius: 18px; }
+.streak-grid li.future { color: var(--text-3); font-weight: 500; }
+.streak-grid li.today > .t-num { box-shadow: inset 0 0 0 2px var(--primary); color: var(--primary-text); font-weight: 800; }
+.streak-grid li.done.today > .t-num { background: var(--primary); color: var(--on-primary); box-shadow: none; }
+.streak-legend { display: flex; gap: var(--sp-4); justify-content: center; padding-top: 4px; }
+.streak-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.streak-legend i { width: 14px; height: 14px; border-radius: 50%; }
+.streak-legend i.done { background: var(--primary-soft-2); }
+.streak-legend i.today { box-shadow: inset 0 0 0 2px var(--primary); }
+
+/* ---------- Compartir ---------- */
+.share-prev { display: grid; place-items: center; }
+.share-prev img, .share-prev .skel { width: 232px; aspect-ratio: 1080 / 1350; border-radius: var(--r-lg); box-shadow: 0 0 0 1px var(--border), var(--lift); }
+.share-btns { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-2); }
+.share-btns .btn, .streak-foot .btn { padding-inline: var(--sp-2); }
+.screen-foot.streak-foot { display: grid; grid-template-columns: 1fr 1.4fr; }
+
+/* ---------- Animación al sumar un día ----------
+   Entre las hojas (90) y los avisos (95): «Deshacer» queda a mano.
+   Solo transform, opacidad y trazo. Con «reducir movimiento» se
+   ve directamente el final. */
+.racha-fx { position: absolute; inset: 0; z-index: 94; display: grid; place-items: center; background: var(--scrim); animation: fade-in var(--t-med) var(--ease-out) both; }
+.racha-fx.out { animation: fade-out var(--t-med) var(--ease-in) both; pointer-events: none; }
+.fx-card { width: min(264px, calc(100% - 56px)); display: grid; justify-items: center; gap: 4px; padding: var(--sp-5) var(--sp-4); border-radius: 24px; text-align: center; background: linear-gradient(180deg, color-mix(in srgb, var(--fx) 8%, transparent), transparent 150px), var(--surface); box-shadow: 0 30px 60px -20px rgb(0 0 0 / .45); animation: fx-card-in var(--t-slow) var(--ease-spring) both; }
+.racha-fx.out .fx-card { animation: fx-card-out var(--t-med) var(--ease-in) both; }
+.fx-scene { width: 192px; height: auto; overflow: visible; }
+.fx-num { height: 1em; overflow: hidden; font-size: calc(46px * var(--ts)); line-height: 1; font-weight: 800; letter-spacing: -.02em; color: var(--text); }
+.fx-reel { display: grid; justify-items: center; animation: fx-reel .6s .75s var(--ease-spring) both; }
+.fx-reel b { height: 1em; font-weight: inherit; }
+.fx-lbl { font-size: var(--fs-15); font-weight: 600; color: var(--text-2); }
+.fx-sub { margin-top: 8px; padding: 5px 12px; border-radius: var(--r-pill); font-size: var(--fs-13); font-weight: 700; background: var(--fx-soft); color: var(--fx); animation: rise var(--t-slow) 1s var(--ease-out) both; }
+.racha-fx[data-fx="inicio"] .fx-sub, .racha-fx[data-fx="leyenda"] .fx-sub { color: var(--primary-text); }
+
+.fx-halo { fill: var(--fx-soft); transform-origin: 80px 70px; animation: fx-pop .5s var(--ease-spring) both; }
+.fx-ic { overflow: visible; stroke: var(--fx); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; fill: color-mix(in srgb, var(--fx) 20%, transparent); }
+.fx-ico { transform-origin: 80px 100px; }
+.fx-ic path { transform-origin: 12px 21px; }
+.fx-ring { fill: none; stroke: var(--fx); stroke-width: 2; opacity: 0; transform-origin: 80px 70px; animation: fx-ring .9s var(--d) var(--ease-out) forwards; }
+.fx-ray { fill: none; stroke: var(--fx); stroke-width: 3; stroke-linecap: round; opacity: 0; animation: fx-ray .8s var(--d) var(--ease-out) both; }
+.fx-dot { fill: var(--fx); opacity: 0; animation: fx-dot 1.1s var(--d) var(--ease-out) both; }
+.fx-ember { fill: var(--fx); opacity: 0; animation: fx-ember 1.2s var(--d) ease-out both; }
+.fx-wave { fill: none; stroke: var(--fx); stroke-width: 2.5; stroke-linecap: round; opacity: 0; animation: fx-wave .9s var(--d) ease-out both; }
+
+/* Inicio: la llama se dibuja y prende */
+[data-fx="inicio"] .p0 { stroke-dasharray: 1; animation: fx-draw .7s .2s var(--ease-out) both, fx-sway 1s 1s ease-in-out; }
+/* Chispa: salta y lanza destellos */
+[data-fx="chispa"] .p0 { animation: fx-pop .5s .2s var(--ease-spring) both, fx-sway .8s 1.1s ease-in-out; }
+[data-fx="chispa"] :is(.p1, .p2, .p3) { transform-origin: 12px 13px; animation: fx-burst .45s .5s var(--ease-spring) both, fx-blink .5s 1.1s ease-in-out 2; }
+/* Llama: crece desde la base y ondea */
+[data-fx="llama"] .p0 { animation: fx-grow .8s .2s var(--ease-out) both, fx-sway .75s 1s ease-in-out 2; }
+/* Antorcha: se alza, se balancea y prende */
+[data-fx="antorcha"] .fx-ico { animation: fx-raise .9s .1s var(--ease-out) both; }
+[data-fx="antorcha"] .p0 { transform-origin: 12px 12.5px; animation: fx-grow .6s .75s var(--ease-out) both, fx-sway .7s 1.4s ease-in-out 2; }
+/* Fogata: caen los leños y arde */
+[data-fx="fogata"] .p1 { transform-origin: 12px 20px; animation: fx-log-l .5s .15s var(--ease-spring) both; }
+[data-fx="fogata"] .p2 { transform-origin: 12px 20px; animation: fx-log-r .5s .3s var(--ease-spring) both; }
+[data-fx="fogata"] .p0 { transform-origin: 12px 15px; animation: fx-grow .7s .65s var(--ease-out) both, fx-sway .6s 1.35s ease-in-out 2; }
+/* Hoguera: doble fuego con ondas de calor */
+[data-fx="hoguera"] .p0 { animation: fx-blaze .9s .2s var(--ease-out) both, fx-sway .6s 1.1s ease-in-out 3; }
+[data-fx="hoguera"] .p1 { animation: fx-grow .6s .7s var(--ease-out) both, fx-sway .45s 1.3s ease-in-out 3 reverse; }
+/* Caldero: se asienta, se abre el borde y el fuego cae dentro */
+[data-fx="caldero"] :is(.p2, .p3, .p4) { animation: fx-seat .6s .15s var(--ease-spring) both; }
+[data-fx="caldero"] .p1 { transform-origin: 12px 14.5px; animation: fx-wide .4s .5s var(--ease-spring) both; }
+[data-fx="caldero"] .p0 { transform-origin: 12px 12.5px; animation: fx-drop .7s .75s var(--ease-out) both, fx-sway .7s 1.45s ease-in-out 2; }
+/* Leyenda: el sello gira, estalla en rayos y en los colores de todos los hitos */
+[data-fx="leyenda"] .fx-seal { fill: var(--fx); animation: fx-seal .9s .1s var(--ease-spring) both, fx-turn 2.4s 1s linear; }
+[data-fx="leyenda"] .fx-ic { stroke: var(--on-primary); fill: color-mix(in srgb, var(--on-primary) 22%, transparent); }
+[data-fx="leyenda"] .fx-ico { transform-origin: 80px 70px; transform: scale(.86); }
+[data-fx="leyenda"] .p0 { animation: fx-grow .7s .5s var(--ease-out) both, fx-sway .7s 1.2s ease-in-out 2; }
+[data-fx="leyenda"] :is(.p1, .p2, .p3, .p4, .p5) { transform-origin: 12px 14px; animation: fx-burst .5s .85s var(--ease-spring) both, fx-blink .6s 1.5s ease-in-out 2; }
+
+@keyframes fx-card-in { from { opacity: 0; transform: translateY(18px) scale(.9); } to { opacity: 1; transform: none; } }
+@keyframes fx-card-out { to { opacity: 0; transform: translateY(-14px) scale(.96); } }
+@keyframes fx-reel { from { transform: none; } to { transform: translateY(-50%); } }
+@keyframes fx-pop { from { opacity: 0; transform: scale(0); } to { opacity: 1; transform: none; } }
+@keyframes fx-draw { 0% { opacity: 0; fill-opacity: 0; stroke-dashoffset: 1; } 10% { opacity: 1; } 75% { fill-opacity: 0; } 100% { opacity: 1; fill-opacity: 1; stroke-dashoffset: 0; } }
+@keyframes fx-grow { 0% { opacity: 0; transform: scale(.4, 0); } 20% { opacity: 1; } 55% { transform: scale(.92, 1.16); } 78% { transform: scale(1.05, .95); } 100% { opacity: 1; transform: none; } }
+@keyframes fx-blaze { 0% { opacity: 0; transform: scale(.3, 0); } 15% { opacity: 1; } 50% { transform: scale(1.14, 1.3); } 75% { transform: scale(.97, .95); } 100% { opacity: 1; transform: none; } }
+@keyframes fx-sway { 0%, 100% { transform: none; } 25% { transform: skewX(-6deg) scaleY(1.05); } 70% { transform: skewX(6deg) scaleY(.98); } }
+@keyframes fx-burst { from { opacity: 0; transform: scale(.2); } to { opacity: 1; transform: none; } }
+@keyframes fx-blink { 0%, 100% { opacity: 1; transform: none; } 50% { opacity: .35; transform: scale(1.1); } }
+@keyframes fx-raise { 0% { opacity: 0; transform: translateY(46px) rotate(-26deg); } 25% { opacity: 1; } 55% { transform: translateY(-5px) rotate(12deg); } 80% { transform: rotate(-5deg); } 100% { opacity: 1; transform: none; } }
+@keyframes fx-log-l { from { opacity: 0; transform: translate(-12px, -6px) rotate(-38deg); } to { opacity: 1; transform: none; } }
+@keyframes fx-log-r { from { opacity: 0; transform: translate(12px, -6px) rotate(38deg); } to { opacity: 1; transform: none; } }
+@keyframes fx-seat { from { opacity: 0; transform: translateY(9px) scale(.8); } to { opacity: 1; transform: none; } }
+@keyframes fx-wide { from { opacity: 0; transform: scaleX(0); } to { opacity: 1; transform: none; } }
+@keyframes fx-drop { 0% { opacity: 0; transform: translateY(-9px) scale(.35); } 45% { opacity: 1; transform: translateY(0) scale(.6); } 70% { transform: scale(.9, 1.22); } 100% { opacity: 1; transform: none; } }
+@keyframes fx-seal { from { opacity: 0; transform: rotate(-200deg) scale(0); } to { opacity: 1; transform: none; } }
+@keyframes fx-turn { to { transform: rotate(45deg); } }
+@keyframes fx-ring { 0% { opacity: .7; transform: scale(.8); } 100% { opacity: 0; transform: scale(1.45); } }
+@keyframes fx-ray { 0% { opacity: 0; transform: translateY(16px); } 35% { opacity: 1; } 100% { opacity: 0; transform: translateY(-12px); } }
+@keyframes fx-dot { 0% { opacity: 0; transform: none; } 20% { opacity: 1; } 70% { opacity: 1; } 100% { opacity: 0; transform: translateY(var(--go)); } }
+@keyframes fx-ember { 0% { opacity: 0; transform: none; } 20% { opacity: 1; } 100% { opacity: 0; transform: translate(var(--x), -74px); } }
+@keyframes fx-wave { 0% { opacity: 0; transform: translateY(12px); } 40% { opacity: 1; } 100% { opacity: 0; transform: translateY(-8px); } }
+
+/* ---------- Texto grande y alto contraste ---------- */
+body[data-text="large"] .hoy-head { gap: 6px; }
+body[data-text="large"] .share-btns { grid-template-columns: 1fr; }
+body[data-text="large"] .screen-foot.streak-foot { grid-template-columns: minmax(max-content, 1fr) 1.4fr; }
+body[data-contrast="high"] .streak-hero { background: var(--surface); }
+body[data-contrast="high"] .fx-card { background: var(--surface); box-shadow: 0 0 0 2px var(--text); }
+body[data-contrast="high"] .hito, body[data-contrast="high"] .next-hito { box-shadow: inset 0 0 0 2px var(--text); }
+body[data-contrast="high"] .hito.locked { box-shadow: inset 0 0 0 1.5px var(--border); }
+body[data-contrast="high"] .streak-grid li.done { box-shadow: inset 0 2px 0 var(--primary), inset 0 -2px 0 var(--primary); }
+body[data-contrast="high"] .streak-week .future .sw-c { box-shadow: inset 0 0 0 1.5px var(--border); }
